@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+int n_l;
 
 /* This function scans a line of text (until \n) and returns a char* that contains all characters on the line (up to 255) excluding \n.
 It also ensures the \0 termination.
@@ -56,10 +57,10 @@ struct winTuring{
 typedef struct winTuring WinTuring;
 
 // MON TRUC FOIREUX:
-void readWinners(WinTuring **win, int n_ligne)
+void readWinners(WinTuring **win)
 {
-	*win = calloc(n_ligne,fmax(sizeof(char),sizeof(int)));
-	for (int i=0;i<n_ligne;i++){
+	*win = calloc(n_l,fmax(sizeof(char),sizeof(int)));
+	for (int i=0;i<n_l;i++){
 	(*win)[i].year=scanLineAsInt();
 	(*win)[i].name=scanLine();
 	(*win)[i].why=scanLine();
@@ -70,18 +71,34 @@ void readWinners(WinTuring **win, int n_ligne)
 	//}
 }
 
-void printWinners(WinTuring **win ,int nb){
-	for (int i=0;i<nb;i++){
+void printWinners(WinTuring **win){
+	for (int i=0;i<n_l;i++){
 		printf("%i \n %s \n %s \n",(*win)[i].year,(*win)[i].name,(*win)[i].why);
 	}
 }
 
+int recupAnnee(WinTuring **win, int n_annee){
+	for (int i=0;i<n_l;i++){
+		if ((*win)[i].year==n_annee){
+			return i;
+		}
+}
+}
+void infosAnnee(WinTuring **win, int n_annee){
+	int i_annee;
+	i_annee = recupAnnee(&win, n_annee);
+	printf("L'annee %i",n_annee);
+	printf(", le(s) gagnant(s) ont été : %s",(*win)[i_annee].name);
+	printf("\n Nature des travaux : %s",(*win)[i_annee].why);
+}
+
 int main(void)
 {
+	n_l = scanLineAsInt();
 	WinTuring *Win;
-	int n_l = scanLineAsInt();
-	readWinners(&Win, n_l);
-	printWinners(&Win, n_l);
+	readWinners(&Win);
+	printWinners(&Win);
+	infosAnnee(&Win,2003);
 
 /*  Pour l'exp.:
 	int nbGagnants = scanLineAsInt();
