@@ -8,7 +8,7 @@ struct matrix{
     int tab;
 };
 
-typedef matrix Matrix;
+typedef struct matrix Matrix;
 typedef struct matrix MatrixArray;
 
 //Question 2:
@@ -33,7 +33,7 @@ void readMatrixArray(MatrixArray **tab_mat){
     for (int i=0;i<n_mat;i++){
         Matrix *val_tab_mat;
         readMatrix(&val_tab_mat);
-        tab_mat->i=val_tab_mat;
+        (*tab_mat)[i]=val_tab_mat;
 }
 
 }
@@ -61,3 +61,5 @@ MatrixArray *mat_texte;
     printDoc(mat_texte);
     free(mat_texte);
 }
+
+//Question 5
