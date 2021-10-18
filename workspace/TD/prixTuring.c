@@ -24,7 +24,7 @@ It also ensures the \0 termination.
 char* scanLine()
 {
 	int maxLineSize = 255;
-	char c, *line = calloc(maxLineSize+1,sizeof(char));
+	char c, *line = (char*) calloc(maxLineSize+1,sizeof(char));
 
 	scanf("%250[^\n]", line);
 
@@ -59,7 +59,7 @@ typedef struct winTuring WinTuring;
 // MON TRUC FOIREUX:
 void readWinners(WinTuring **win)
 {
-	*win = calloc(n_l,sizeof(WinTuring));
+	*win = (WinTuring*) calloc(n_l,sizeof(WinTuring));
 	for (int i=0;i<n_l;i++){
 	(*win)[i].year=scanLineAsInt();
 	(*win)[i].name=scanLine();
@@ -75,6 +75,7 @@ void printWinners(WinTuring *win){
 	printf("%i\n",n_l);
 	for (int i=0;i<n_l;i++){
 		printf("%i\n%s\n%s\n",win[i].year,win[i].name,win[i].why);
+		// win[i] = *(win + i) = *(i + win) = i[win];
 	}
 }
 
@@ -84,6 +85,7 @@ int recupAnnee(WinTuring *win, int n_annee){
 			return i;
 		}
 }
+return 0;
 }
 void infosAnnee(WinTuring *win, int n_annee){
 	int i_annee;
