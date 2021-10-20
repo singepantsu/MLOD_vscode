@@ -19,10 +19,9 @@ Liste creer(Element v){
 
 // ajoute l'élément v en tete de la liste l
 Liste ajoutTete(Element v, Liste l) {
-	Cellule* cell =(Cellule*) malloc(sizeof(Cellule));
-	cell->val = v;
-	cell->suiv = l;
-	return cell;
+	Liste n = creer(v);
+	n->suiv = l;
+	return n;
 }
 
 
@@ -36,9 +35,11 @@ void afficheElement(Element e) {
 // Attention la liste peut être vide !
 // version itérative
 void afficheListe_i(Liste l) {
-	while (l != NULL){
-		afficheElement(l->val);
-		l=l->suiv;
+	Liste *l_copy;
+	l_copy = &l;
+	while (!estVide(*l_copy)){
+		afficheElement((*l_copy)->val);
+		l_copy=&((*l_copy)->suiv);
 	}
 }
 
@@ -50,12 +51,12 @@ void afficheListe_r(Liste l) {
 	}
 }
 
-void detruireElement(Element e) {}
+void detruireElement(Element e);
 
 // Détruit tous les éléments de la liste l
 // version itérative
 void detruire_i(Liste l) {
-	while (l != NULL){
+	while (!estVide(l)){
 		detruireElement(l->val); //noyau central de la fonction
 		Cellule* next=l->suiv;
 		free(l);
@@ -65,7 +66,7 @@ void detruire_i(Liste l) {
 
 // version récursive
 void detruire_r(Liste l) {
-	if (l != NULL){
+	if (!estVide(l)){
 		detruireElement(l->val);
 		detruire_r(l->suiv);
 	}
@@ -75,12 +76,27 @@ void detruire_r(Liste l) {
 // retourne la liste dans laquelle l'élément v a été ajouté en fin
 // version itérative
 Liste ajoutFin_i(Element v, Liste l) {
-	return TODO;
+	Liste *l_copy;
+	Liste cell_fin = creer(v);
+	l_copy = &l->suiv;
+	while (!estVide(*l_copy)){
+		l_copy=&((*l_copy)->suiv);
+	}
+	*l_copy = cell_fin;
+	return l;
 }
 
 // version recursive
 Liste ajoutFin_r(Element v, Liste l) {
-	return TODO;
+	if (estVide(l)){
+		return creer(v);
+	}
+	else{
+		Cellule* cell =(Cellule*) malloc(sizeof(Cellule));
+		cell->val = l->val;
+		cell->suiv = ajoutFin_r(v, l->suiv);
+		return cell;
+	}
 }
 
 // compare deux elements
@@ -91,24 +107,34 @@ bool equalsElement(Element e1, Element e2){
 // Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
 // version itérative
 Liste cherche_i(Element v,Liste l) {
-	return TODO;
+	Liste *l_copy;
+	l_copy = &l;
+	while (equalsElement((*l_copy)->val, v)  && !estVide(*l_copy)){
+		l_copy = &(*l_copy)->suiv;
+	}
+	return *l_copy;
 }
 
 // version récursive
 Liste cherche_r(Element v,Liste l) {
-	return TODO;
+	if (equalsElement(l->val,v) || estVide(l)){
+		return l;
+	}
+	return cherche_r(v, l->suiv);
 }
 
 // Retourne la liste modifiée dans la laquelle le premier élément ayant la valeur v a été supprimé
 // ne fait rien si aucun élément possède cette valeur
 // version itérative
 Liste retirePremier_i(Element v, Liste l) {
+	*cherche_i(v,l);
 	return TODO;
 }
 
 
 // version recursive
 Liste retirePremier_r(Element v, Liste l) {
+	if (l->val )
 	return TODO;
 }
 
