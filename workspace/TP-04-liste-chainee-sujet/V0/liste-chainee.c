@@ -35,11 +35,10 @@ void afficheElement(Element e) {
 // Attention la liste peut être vide !
 // version itérative
 void afficheListe_i(Liste l) {
-	Liste *l_copy;
-	l_copy = &l;
-	while (!estVide(*l_copy)){
-		afficheElement((*l_copy)->val);
-		l_copy=&((*l_copy)->suiv);
+	Liste l_copy = l;
+	while (!estVide(l_copy)){
+		afficheElement(l_copy->val);
+		l_copy=l_copy->suiv;
 	}
 }
 
@@ -76,11 +75,11 @@ void detruire_r(Liste l) {
 // retourne la liste dans laquelle l'élément v a été ajouté en fin
 // version itérative
 Liste ajoutFin_i(Element v, Liste l) {
-	Liste *l_copy;
+	Liste l_copy;
 	Liste cell_fin = creer(v);
-	l_copy = &l->suiv;
-	while (!estVide(*l_copy)){
-		l_copy=&((*l_copy)->suiv);
+	l_copy = l->suiv;
+	while (!estVide(l_copy)){
+		l_copy=l_copy->suiv;
 	}
 	*l_copy = cell_fin;
 	return l;
@@ -107,12 +106,12 @@ bool equalsElement(Element e1, Element e2){
 // Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
 // version itérative
 Liste cherche_i(Element v,Liste l) {
-	Liste *l_copy;
-	l_copy = &l;
-	while (equalsElement((*l_copy)->val, v)  && !estVide(*l_copy)){
-		l_copy = &(*l_copy)->suiv;
+	Liste l_copy;
+	l_copy = l;
+	while (equalsElement(l_copy->val, v)  && !estVide(l_copy)){
+		l_copy = l_copy->suiv;
 	}
-	return *l_copy;
+	return l_copy;
 }
 
 // version récursive
@@ -127,7 +126,7 @@ Liste cherche_r(Element v,Liste l) {
 // ne fait rien si aucun élément possède cette valeur
 // version itérative
 Liste retirePremier_i(Element v, Liste l) {
-	*cherche_i(v,l);
+	Liste l_copy = cherche_i(v,l);
 	return TODO;
 }
 
