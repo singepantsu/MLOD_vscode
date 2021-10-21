@@ -108,7 +108,7 @@ bool equalsElement(Element e1, Element e2){
 Liste cherche_i(Element v,Liste l) {
 	Liste l_copy;
 	l_copy = l;
-	while (equalsElement(l_copy->val, v)  && !estVide(l_copy)){
+	while (!equalsElement(l_copy->val, v)  && !estVide(l_copy)){
 		l_copy = l_copy->suiv;
 	}
 	return l_copy;
@@ -126,7 +126,17 @@ Liste cherche_r(Element v,Liste l) {
 // ne fait rien si aucun élément possède cette valeur
 // version itérative
 Liste retirePremier_i(Element v, Liste l) {
-	Liste l_copy = cherche_i(v,l);
+	Liste l_prec = l;
+	Liste l_copy = l->suiv;
+	while (equalsElement(l_copy->val, v)  && !estVide(l_copy)){
+		l_prec = l_copy;
+		l_copy = l_copy->suiv;
+	}
+	if (l_copy->val==v){
+		l_prec->suiv = l_copy->suiv;
+		detruireElement(l_copy->val);
+	}
+
 	return TODO;
 }
 
