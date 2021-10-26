@@ -100,5 +100,6 @@ Liste trierLaListeParAnnee(Liste l){
 		}
 		l = l->suiv;
 	}
+	detruire_i(l);
 	return l_new;
 }
