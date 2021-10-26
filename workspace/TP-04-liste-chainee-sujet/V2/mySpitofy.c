@@ -36,6 +36,7 @@ int main(void){
         l=ajoutFin_i(readMusicLine(),l);
     }
     printf("%s\n",first_line);
+	//l = trierLaListeParAnnee(l);
     afficheListe_i(l);
     detruire_i(l);
     free(first_line);
