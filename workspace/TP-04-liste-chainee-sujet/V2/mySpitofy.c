@@ -1,5 +1,5 @@
 //cd workspace/TP-04-liste-chainee-sujet/V2/
-//gcc -W -Wall LinkedList.c mySpitofy.c linkedListOfMusic.c -o mySpitofy
+//gcc -W -Wall LinkedList.c mySpitofy.c linkedListOfMusic.c -o mySpitofy -g
 // ./mySpitofy < music.csv > out.csv
 // valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all --show-reachable=no ./mySpitofy <music.csv> out.csv
 

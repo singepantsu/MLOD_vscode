@@ -27,7 +27,7 @@ char* scanElement()
 */
 void afficheElement(Element e){
     Music *m = (Music *)e;
-    printf("%s,%s,%s,%s,%d,%d,%d\n",
+    printf("%s,%s,%s,%s,%s,%d,%d\n",
         m->name, m->artist, m->album, m->genre, m->disk_num, m->track_num, m->year);
 }
 
@@ -37,6 +37,7 @@ void detruireElement(Element e){
     free(m->artist);
     free(m->album);
     free(m->genre);
+    free(m->disk_num);
     free(m);
 }
 
@@ -51,7 +52,7 @@ bool equalsElement(Element e1, Element e2){
 	if(test)
 		test = (strcmp(m1->genre,m2->genre)==0);
 	if(test)
-		test = (m1->disk_num==m2->disk_num);
+		test = (strcmp(m1->disk_num,m2->disk_num)==0);
 	if(test)
 		test = (m1->track_num==m2->track_num);
 	if(test)
@@ -65,12 +66,13 @@ Music* readMusicLine(){
     m->artist   = (char*) calloc(sizeof(char),250);
     m->genre    = (char*) calloc(sizeof(char),250);
     m->album    = (char*) calloc(sizeof(char),250);
+	m->disk_num = (char*) calloc(sizeof(char),250);
     scanf("%250[^,\n],", m->name);
     scanf("%250[^,\n],", m->artist);
     scanf("%250[^,\n],", m->album);
     scanf("%250[^,\n],", m->genre);
-    scanf("%i,", &(m->disk_num));
-    scanf("%i,", &(m->track_num));
+    scanf("%250[^,\n]", m->disk_num);
+    scanf(",%i,", &(m->track_num));
     scanf("%i\n",&(m->year));
     return m;
 }

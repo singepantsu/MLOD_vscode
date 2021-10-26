@@ -12,7 +12,7 @@ typedef struct {
     char* artist;
     char* album;
     char* genre;
-    int disk_num;
+    char* disk_num;
     int track_num;
     int year;
 } Music;
