@@ -76,3 +76,29 @@ Music* readMusicLine(){
     scanf("%i\n",&(m->year));
     return m;
 }
+
+Liste trierLaListeParAnnee(Liste l){
+	Liste l_new = creer(l->val);
+	l=l->suiv;
+	if(estVide(l) || estVide(l->suiv))
+        return l;
+
+	while (l!=NULL){
+		l_new = ajoutTete(l->val, l_new);
+		Liste l_newCopy = l_new;
+		Liste l_newSuiv = l_new->suiv;
+		Music *temp = (Music*)l_new->val;
+		Music *tempSuiv = (Music*)l_newSuiv->val;
+		while ((l_newCopy!=NULL) || (temp->year)>(tempSuiv->year)){
+			Music *perm = temp;
+			l_newCopy->val = perm;
+			l_newSuiv->val = temp;
+			l_newCopy = l_newCopy->suiv;
+			l_newSuiv = l_newCopy->suiv;
+			temp = (Music*)l_newCopy->val;
+			tempSuiv = (Music*)l_newSuiv->val;
+		}
+		l = l->suiv;
+	}
+	return l_new;
+}
