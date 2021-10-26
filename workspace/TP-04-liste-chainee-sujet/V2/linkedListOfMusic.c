@@ -9,7 +9,7 @@ char* scanElement()
 	int maxLineSize = 255;
 	char c, *line = (char*) calloc(maxLineSize+1,sizeof(char));
 
-	scanf("%250[^,]", line);
+	scanf("%250[^\n]", line);
 
 	if ( (c = getchar()) != ',') {
 		//we did not get all the line 
@@ -33,6 +33,10 @@ void afficheElement(Element e){
 
 void detruireElement(Element e){
     Music *m = (Music *)e;
+    free(m->name);
+    free(m->artist);
+    free(m->album);
+    free(m->genre);
     free(m);
 }
 
@@ -56,25 +60,17 @@ bool equalsElement(Element e1, Element e2){
 }
 
 Music* readMusicLine(){
-    Music* m =(Music*) malloc(sizeof(Music));
-    /*Prototype en projet:
-    int buf;
-    char *str = (char*) calloc(1,sizeof(char)); 
-    m->name = scanf("%20s,", &str);
-    m->artist = scanf("%20s,", &str);
-    m->album = scanf("%20s,", &str);
-    m->genre = scanf("%20s,", &str);
-	m->disk_num = scanf("%i,", &buf);
-    m->track_num = scanf("%i,", &buf);
-    m->year = scanf("%i\n",&buf);
-    free(str);
-    */
-   scanf("%40s,", m->name);
-   scanf("%40s,", m->artist);
-   scanf("%40s,", m->album);
-   scanf("%40s,", m->genre);
-   scanf("%i,", &(m->disk_num));
-   scanf("%i,", &(m->track_num));
-   scanf("%i\n",&(m->year));
+    Music* m = (Music*) malloc(sizeof(Music));
+    m->name     = (char*) calloc(sizeof(char),250);
+    m->artist   = (char*) calloc(sizeof(char),250);
+    m->genre    = (char*) calloc(sizeof(char),250);
+    m->album    = (char*) calloc(sizeof(char),250);
+    scanf("%250[^,\n],", m->name);
+    scanf("%250[^,\n],", m->artist);
+    scanf("%250[^,\n],", m->album);
+    scanf("%250[^,\n],", m->genre);
+    scanf("%i,", &(m->disk_num));
+    scanf("%i,", &(m->track_num));
+    scanf("%i\n",&(m->year));
     return m;
 }
