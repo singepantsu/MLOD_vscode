@@ -24,8 +24,17 @@ ArbreBinaire creer(Element e) {
 // si a contient déjà un element e, ce dernier n'est pas insérer afin d'éviter les doublons
 // version itérative
 ArbreBinaire insere_i(ArbreBinaire a, Element e) {
-
-	return NULL;
+ArbreBinaire copie_a = a;
+	while (copie_a != NULL){
+		if (copie_a->val == e)
+			return a;
+		if (copie_a->val<e)
+			copie_a = copie_a->filsGauche;
+		if (copie_a->val>e)
+			copie_a = copie_a->filsDroit;
+	}
+	copie_a = creer(e);
+	return a;
 }	
 
 // insere e dans a sachant que a est un arbre binaire de recherche
