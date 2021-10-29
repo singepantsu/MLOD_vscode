@@ -16,8 +16,8 @@ void initialiser(ArbreBinaire* a) {
 ArbreBinaire creer(Element e) {
 	ArbreBinaire depart = (Noeud*) malloc(sizeof(Noeud));
 	depart->val=e;
-	depart->filsDroit=NULL;
-	depart->filsGauche=NULL;
+	initialiser(&depart->filsDroit);
+	initialiser(&depart->filsGauche);
 	return depart;
 }
 
