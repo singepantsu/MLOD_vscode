@@ -64,7 +64,7 @@ ArbreBinaire max(ArbreBinaire a);
 // version récursive
 ArbreBinaire recherche_r(ArbreBinaire a, Element elem);
 
-// suppime x de a
+// supprime x de a
 ArbreBinaire supprimer_r(ArbreBinaire a,Element x);
 
 void detruire_r(ArbreBinaire a);
