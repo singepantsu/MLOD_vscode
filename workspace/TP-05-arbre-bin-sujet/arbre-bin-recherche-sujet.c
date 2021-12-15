@@ -69,7 +69,6 @@ if (estVide(a))
 return (1 + nombreDeNoeud(a->filsDroit) + nombreDeNoeud(a->filsGauche));
 }
 
-
 // retourne la profondeur du noeud ayant la valeur e dans a
 // retourne -1 si a est vide ou si e n'est pas dans a
 int profondeur(ArbreBinaire a, Element e){

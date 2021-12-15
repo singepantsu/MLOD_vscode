@@ -36,13 +36,13 @@ int main(void){
 	afficheGRD_r(a);printf("\n");
 	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 
- 	//a = supprimer_r(a,6);
- 	//afficheGRD_r(a);printf("\n");
- 	//printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
+ 	a = supprimer_r(a,6);
+ 	afficheGRD_r(a);printf("\n");
+ 	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 //
- 	//a = supprimer_r(a,5);
- 	//afficheGRD_r(a);printf("\n");
- 	//printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
+ 	a = supprimer_r(a,5);
+ 	afficheGRD_r(a);printf("\n");
+ 	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 //
 	 printf("profondeur 5 = %i\n",profondeur(a,5));
 	 printf("profondeur 2 = %i\n",profondeur(a,2));
